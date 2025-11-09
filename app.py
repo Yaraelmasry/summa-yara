@@ -9,7 +9,7 @@ st.title("🧩 SummaYara")
 st.markdown("### Your friendly AI that turns chaos into clarity")
 st.caption("Built with open-source models. Made by Yara.")
 
-# ---------- Helpers ----------
+
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -25,7 +25,7 @@ def fetch_text_from_url(url: str) -> str:
     except Exception:
         return ""
 
-    # Try trafilatura first (great for blogs/news)
+    
     try:
         import trafilatura
         extracted = trafilatura.extract(html, favor_recall=True, include_comments=False)
@@ -34,7 +34,7 @@ def fetch_text_from_url(url: str) -> str:
     except Exception:
         pass
 
-    # Wikipedia-specific fallback (rendered content)
+    # Wikipedia
     if "wikipedia.org" in url:
         sep = "&" if "?" in url else "?"
         wiki_url = f"{url}{sep}action=render"
@@ -57,7 +57,7 @@ def fetch_text_from_url(url: str) -> str:
     text = "\n".join(b.get_text(" ", strip=True) for b in blocks)
     return text if len(text) > 200 else ""
 
-# ---------- Model ----------
+# MODEL
 @st.cache_resource(show_spinner=True)
 def load_summarizer():
     # Always use CPU to avoid MPS issues on Mac
@@ -73,7 +73,7 @@ summarizer = load_summarizer()
 with st.expander("Tips"):
     st.write("- Paste 1–10 paragraphs of clean text.\n- Keep 'Chunk long text' on for very long inputs.")
 
-# ---------- UI ----------
+# UI
 url_mode = st.checkbox("Fetch text from a URL", value=False)
 
 text = ""
