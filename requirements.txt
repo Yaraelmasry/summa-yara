@@ -1,0 +1,6 @@
+streamlit==1.39.0
+transformers==4.44.2
+torch>=2.2.0 --extra-index-url https://download.pytorch.org/whl/cpu
+sentencepiece
+accelerate
+einops

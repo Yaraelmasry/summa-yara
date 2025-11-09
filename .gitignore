@@ -1,0 +1,25 @@
+cat > .gitignore << 'EOF'
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.swp
+
+# macOS
+.DS_Store
+
+# Virtual envs
+.venv/
+venv/
+
+# Caches / big artifacts
+model_cache/
+models/
+*.bin
+*.pt
+*.safetensors
+*.onnx
+*.tar
+*.zip
+EOF
