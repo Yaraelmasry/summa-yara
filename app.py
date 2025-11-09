@@ -1,6 +1,6 @@
 import os
 import streamlit as st
-from transformers import pipeline
+from transformers.pipelines import pipeline
 from bs4 import BeautifulSoup
 import requests
 
